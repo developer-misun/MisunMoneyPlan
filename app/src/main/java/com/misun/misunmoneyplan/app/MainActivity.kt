@@ -6,8 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.misun.misunmoneyplan.presentation.home.AssetType
+import com.misun.misunmoneyplan.presentation.home.AssetUiModel
 import com.misun.misunmoneyplan.presentation.home.HomeScreen
 import com.misun.misunmoneyplan.presentation.home.HomeUiState
+import com.misun.misunmoneyplan.presentation.home.SampleData
 import com.misun.misunmoneyplan.presentation.ui.theme.MisunMoneyPlanTheme
 import kotlinx.coroutines.launch
 
@@ -32,12 +35,12 @@ class MainActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState) //Activity 생명주기 초기화
         setContent {// UI 루트 설정
+
             MisunMoneyPlanTheme {
-                //TODO AppNavGraph()  // ← Navigation 시작
                 HomeScreen(
-                    state = HomeUiState(),
+                    state = SampleData.dummyState,
                     onAssetClick = {}
-                )  // 임시
+                )
             }
         }
 
