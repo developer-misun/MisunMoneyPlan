@@ -10,14 +10,17 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.misun.misunmoneyplan.presentation.ui.theme.MisunMoneyPlanTheme
 import java.text.NumberFormat
@@ -33,6 +36,24 @@ fun HomeScreen(
     onAssetClick: (AssetId) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
+    val tabs = listOf("종목별", "유형별")
+
+    val displayAssets = if (selectedTabIndex == 0) {
+        state.assets.sortedByDescending { it.amount }.take(10)
+    } else {
+        state.assets.groupBy { it.type }.map { (type, items) ->
+            AssetUiModel(
+                id = type.name,
+                name = type.displayName,
+                type = type,
+                amount = items.sumOf { it.amount },
+                percent = items.fold(0f) { acc, item -> acc + item.percent },
+                color = type.color
+            )
+        }.sortedByDescending { it.amount }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -59,21 +80,44 @@ fun HomeScreen(
             // 총 자산 정보
             TotalAssetCard(state.totalAsset)
 
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // 탭 메뉴
+            TabRow(
+                selectedTabIndex = selectedTabIndex,
+                containerColor = Color.Transparent,
+                contentColor = MaterialTheme.colorScheme.primary,
+                divider = {}
+            ) {
+                tabs.forEachIndexed { index, title ->
+                    Tab(
+                        selected = selectedTabIndex == index,
+                        onClick = { selectedTabIndex = index },
+                        text = { Text(text = title) }
+                    )
+                }
+            }
+
             Spacer(modifier = Modifier.height(24.dp))
 
-            // 파이 차트
+            // 차트 섹션
             Box(
                 modifier = Modifier
-                    .size(200.dp)
+                    .fillMaxWidth()
+                    .height(200.dp)
                     .padding(8.dp),
                 contentAlignment = Alignment.Center
             ) {
-                PieChart(assets = state.assets)
-                Text(
-                    text = "자산 구성",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.secondary
-                )
+                if (selectedTabIndex == 0) {
+                    TreemapChart(assets = displayAssets, modifier = Modifier.fillMaxSize())
+                } else {
+                    PieChart(assets = displayAssets)
+                    Text(
+                        text = tabs[selectedTabIndex],
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -85,12 +129,12 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "자산 목록",
+                    text = if (selectedTabIndex == 0) "자산 목록" else "유형 목록",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "${state.assets.size}개 항목",
+                    text = "${displayAssets.size}개 항목",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.outline
                 )
@@ -99,8 +143,10 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             AssetList(
-                assets = state.assets,
-                onAssetClick = onAssetClick
+                assets = displayAssets,
+                onAssetClick = { id ->
+                    if (selectedTabIndex == 0) onAssetClick(id)
+                }
             )
         }
     }
@@ -128,6 +174,98 @@ fun TotalAssetCard(totalAsset: Long) {
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSecondaryContainer
             )
+        }
+    }
+}
+
+@Composable
+fun TreemapChart(assets: List<AssetUiModel>, modifier: Modifier = Modifier) {
+    if (assets.isEmpty()) {
+        Box(
+            modifier = modifier
+                .clip(MaterialTheme.shapes.medium)
+                .background(Color.LightGray.copy(alpha = 0.3f)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "데이터 없음", style = MaterialTheme.typography.bodySmall)
+        }
+        return
+    }
+
+    BoxWithConstraints(modifier = modifier.clip(MaterialTheme.shapes.medium)) {
+        TreemapNode(
+            assets = assets,
+            width = maxWidth,
+            height = maxHeight
+        )
+    }
+}
+
+@Composable
+fun TreemapNode(assets: List<AssetUiModel>, width: Dp, height: Dp) {
+    if (assets.isEmpty()) return
+
+    if (assets.size == 1) {
+        val asset = assets.first()
+        Box(
+            modifier = Modifier
+                .size(width, height)
+                .background(asset.color)
+                .padding(2.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = asset.name,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                if (width > 50.dp && height > 30.dp) {
+                    Text(
+                        text = "${(asset.percent * 100).toInt()}%",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White.copy(alpha = 0.8f)
+                    )
+                }
+            }
+        }
+        return
+    }
+
+    val totalAmount = assets.sumOf { it.amount }
+    if (totalAmount == 0L) return
+
+    var currentAmount = 0L
+    var splitIndex = 0
+    for (i in assets.indices) {
+        currentAmount += assets[i].amount
+        if (currentAmount >= totalAmount / 2) {
+            splitIndex = i + 1
+            break
+        }
+    }
+
+    if (splitIndex == assets.size) splitIndex--
+    if (splitIndex == 0) splitIndex = 1
+
+    val firstPart = assets.subList(0, splitIndex)
+    val secondPart = assets.subList(splitIndex, assets.size)
+
+    val firstPartAmount = firstPart.sumOf { it.amount }
+    val ratio = firstPartAmount.toFloat() / totalAmount
+
+    if (width > height) {
+        Row {
+            TreemapNode(firstPart, width * ratio, height)
+            TreemapNode(secondPart, width * (1 - ratio), height)
+        }
+    } else {
+        Column {
+            TreemapNode(firstPart, width, height * ratio)
+            TreemapNode(secondPart, width, height * (1 - ratio))
         }
     }
 }
@@ -234,9 +372,9 @@ private fun formatCurrency(amount: Long): String {
 @Composable
 fun HomeScreenPreview() {
     val dummyAssets = listOf(
-        AssetUiModel("1", "주식", 5000000, 0.5f, Color(0xFFE57373)),
-        AssetUiModel("2", "현금", 3000000, 0.3f, Color(0xFF81C784)),
-        AssetUiModel("3", "코인", 2000000, 0.2f, Color(0xFF64B5F6))
+        AssetUiModel("1", "삼성전자", AssetType.STOCK, 5000000, 0.5f),
+        AssetUiModel("2", "생활비 계좌", AssetType.CASH, 3000000, 0.3f),
+        AssetUiModel("3", "비트코인", AssetType.COIN, 2000000, 0.2f)
     )
     val dummyState = HomeUiState(
         totalAsset = 10000000,

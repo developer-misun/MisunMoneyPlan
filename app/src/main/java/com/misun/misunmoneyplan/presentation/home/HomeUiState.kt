@@ -17,11 +17,21 @@ data class HomeUiState(
 )
 
 
+
+enum class AssetType(val displayName: String, val color: Color) {
+    CASH("현금", Color(0xFF81C784)),
+    STOCK("주식", Color(0xFFE57373)),
+    ETF("ETF", Color(0xFFFFB74D)),
+    COIN("코인", Color(0xFF64B5F6)),
+    ETC("기타", Color(0xFFBA68C8))
+}
+
 data class AssetUiModel(
     val id: AssetId,
     val name: String,
+    val type: AssetType,
     val amount: Long,
     val percent: Float,
-    val color: Color
+    val color: Color = type.color
 )
 
