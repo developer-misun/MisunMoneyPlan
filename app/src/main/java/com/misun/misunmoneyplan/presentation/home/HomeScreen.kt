@@ -12,9 +12,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.misun.misunmoneyplan.presentation.components.*
-import com.misun.misunmoneyplan.presentation.home.components.PieChart
-import com.misun.misunmoneyplan.presentation.home.components.TotalAssetCard
-import com.misun.misunmoneyplan.presentation.home.components.TreemapChart
 import com.misun.misunmoneyplan.presentation.ui.theme.MisunMoneyPlanTheme
 
 /**
@@ -47,6 +44,7 @@ fun HomeScreen(
     }
 
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = { Text("자산 관리", fontWeight = FontWeight.Bold) },
