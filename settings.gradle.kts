@@ -5,6 +5,7 @@ pluginManagement {
                 includeGroupByRegex("com\\.android.*")
                 includeGroupByRegex("com\\.google.*")
                 includeGroupByRegex("androidx.*")
+                includeGroup("com.google.dagger")  // ← 추가!
             }
         }
         mavenCentral()
@@ -24,4 +25,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "MisunMoneyPlan"
 include(":app")
- 
