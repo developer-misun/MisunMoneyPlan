@@ -95,11 +95,16 @@ fun AssetItem(asset: AssetUiModel, totalAmount: Long, onClick: () -> Unit) {
                         )
                     }
                     Spacer(modifier = Modifier.width(12.dp))
-                    Text(
-                        text = asset.name,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Medium
-                    )
+                    Column {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Text(
+                                text = asset.name,
+                                style = MaterialTheme.typography.bodyLarge,
+                                fontWeight = FontWeight.Medium
+                            )
+                            LocationBadge(location = asset.location)
+                        }
+                    }
                 }
                 Text(
                     text = formatCurrency(asset.amount),

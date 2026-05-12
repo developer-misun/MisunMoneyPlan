@@ -14,6 +14,7 @@ data class Asset(
     val name: String,
     val amount: Long,
     val type: AssetType,
+    val location: AssetLocation = AssetLocation.DOMESTIC,
     val updatedAt: Long,
     val memo: String = ""
 )

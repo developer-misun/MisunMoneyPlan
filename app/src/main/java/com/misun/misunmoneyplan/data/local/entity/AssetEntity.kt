@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.misun.misunmoneyplan.domain.model.Asset
 import com.misun.misunmoneyplan.domain.model.AssetType
+import com.misun.misunmoneyplan.domain.model.AssetLocation
 
 @Entity(tableName = "assets")
 data class AssetEntity(
@@ -12,6 +13,7 @@ data class AssetEntity(
     val name: String,
     val amount: Long,
     val type: AssetType,
+    val location: AssetLocation,
     val updatedAt: Long,
     val memo: String
 )
@@ -25,6 +27,7 @@ fun AssetEntity.toDomain(): Asset {
         name = name,
         amount = amount,
         type = type,
+        location = location,
         updatedAt = updatedAt,
         memo = memo
     )
@@ -39,6 +42,7 @@ fun Asset.toEntity(): AssetEntity {
         name = name,
         amount = amount,
         type = type,
+        location = location,
         updatedAt = updatedAt,
         memo = memo
     )

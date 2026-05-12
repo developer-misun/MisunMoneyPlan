@@ -41,7 +41,8 @@
 - **우선순위**: AI는 `.ai/` 폴더 내의 모든 파일을 최우선 컨텍스트로 간주한다.
 
 ## 📋 설계 및 구현 원칙
-- **테스트 우선 원칙 (Test-Driven Development)**: 모든 작업 단위(`[T1-x]`)는 구현 전 또는 구현 직후 반드시 해당 로직을 검증하는 **테스트 코드(Unit Test)**를 작성한다.
+- **테스트 케이스 우선 정의**: 모든 작업 시작 전, 해당 기능을 검증할 테스트 케이스를 먼저 정의하고 `.ai/TEST_LOG.md`에 `READY` 상태로 기록한다.
+- **테스트 우선 원칙 (Test-Driven Development)**: 정의된 테스트 케이스를 바탕으로 구현 전 또는 구현 직후 반드시 테스트 코드(Unit Test)를 작성한다.
     - 도메인 로직: JUnit 기반 Unit Test
     - UI 컴포넌트: Compose Preview 또는 Screenshot Test (필요 시)
     - 데이터 레이어: Room 관련 로직은 테스트 DB를 활용한 검증

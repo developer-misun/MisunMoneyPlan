@@ -2,6 +2,7 @@ package com.misun.misunmoneyplan.presentation.home
 
 import androidx.compose.ui.graphics.Color
 import com.misun.misunmoneyplan.domain.model.AssetType
+import com.misun.misunmoneyplan.domain.model.AssetLocation
 
 // data class (UI 전용 상태)
 typealias AssetId = String
@@ -32,6 +33,7 @@ data class AssetUiModel(
     val id: AssetId,
     val name: String,
     val type: AssetType,
+    val location: AssetLocation,
     val amount: Long,
     val updatedAt: Long,
     val color: Color = type.color

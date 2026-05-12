@@ -5,6 +5,14 @@
 - **최근 이슈**: KSP2 및 Hilt 버전 호환성 문제 해결 (Hilt 2.59.2 업데이트로 해결).
 
 ## ✅ 완료된 작업
+- `[T2-3]` 종목별 뷰 고도화 (완료)
+    - `AssetUiModel`에 `location` 필드 추가
+    - `AssetItem`에 `LocationBadge` 적용하여 지역 정보(국내/국외) 노출
+    - `SampleData` 업데이트 및 빌드 안정성 확보
+- `[T3-1]` StockDetailScreen UI 및 데이터 모델 확장 (완료)
+    - `Asset` 모델 및 Room 엔티티에 `location`(국내/국외) 속성 추가
+    - 강조 카드 및 지역 배지 스타일을 적용한 상세 화면 구현
+    - 전체 빌드 및 KSP 연동 검증 완료
 - `[T1-2]` Local DB(Room) 스키마 설계 및 DAO 구현 (완료)
     - `AssetEntity`, `AssetDao`, `AssetDatabase` 구현
     - `AssetDaoTest`를 통한 CRUD 기능 검증 완료 (3개 테스트 패스)

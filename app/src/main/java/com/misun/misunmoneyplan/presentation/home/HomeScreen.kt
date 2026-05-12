@@ -42,6 +42,7 @@ fun HomeScreen(
                 id = type.name,
                 name = type.displayName,
                 type = type,
+                location = items.firstOrNull()?.location ?: com.misun.misunmoneyplan.domain.model.AssetLocation.DOMESTIC,
                 amount = items.sumOf { it.amount },
                 updatedAt = items.maxOfOrNull { it.updatedAt } ?: 0L,
                 color = type.color
