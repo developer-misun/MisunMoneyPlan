@@ -5,6 +5,10 @@
 - **최근 이슈**: KSP2 및 Hilt 버전 호환성 문제 해결 (Hilt 2.59.2 업데이트로 해결).
 
 ## ✅ 완료된 작업
+- `[T2-1]` HomeViewModel 설계 및 상태 관리 구현 (완료)
+    - `[F1-2]` 탭 전환 로직 및 `[F1-1]` 총 자산 계산 로직 구현
+    - `HomeViewModelTest`를 통해 초기 로딩 및 탭 상태 검증 완료
+    - 기능 번호 주석 표기 규칙 적용
 - `[T2-3]` 종목별 뷰 고도화 (완료)
     - `AssetUiModel`에 `location` 필드 추가
     - `AssetItem`에 `LocationBadge` 적용하여 지역 정보(국내/국외) 노출
