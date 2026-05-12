@@ -17,8 +17,9 @@
 - **`app`**: 앱의 진입점 및 전역 설정을 담당한다.
     - `MainActivity.kt`, `MoneyPlanApp.kt` (Application 클래스)
 - **`presentation`**: UI 레이어. 화면, 상태 관리, 테마를 담당한다.
-    - `home/`: 메인 대시보드 (`HomeScreen.kt`, `HomeUiState.kt`)
-    - `asset/`: 자산 상세 및 관리 (`StockDetailScreen.kt`, `TypeDetailScreen.kt`)
+    - `home/`: 메인 대시보드 (`HomeScreen.kt`, `HomeUiState.kt`, `HomeViewModel.kt`)
+    - `asset/`: 자산 상세 및 관리 (`StockDetailScreen.kt`, `AssetDetailViewModel.kt`)
+    - `portfolio/`: 포트폴리오 관리 (`PortfolioScreen.kt`, `PortfolioViewModel.kt`)
     - `components/`: 공통 재사용 컴포넌트 (`PieChart.kt`, `TotalAssetCard.kt`)
     - `ui.theme/`: 디자인 시스템 정의 (`Color.kt`, `Theme.kt`)
 - **`domain`**: 순수 비즈니스 로직 레이어 (가장 안쪽 계층).
@@ -34,6 +35,7 @@
 ## 🔄 AI 협업 및 컨텍스트 유지 규칙 (Mandatory)
 - **학습 우선**: 새로운 라이브러리나 기술 도입 전 **`TECH_STACK.md`**에 원리와 목적을 정리하고 사용자의 승인을 받는다.
 - **실시간 동기화**: 요구사항 확정 시 `AGENTS.md` 및 `UI_UX_SPEC.md`를 즉시 업데이트한다.
+- **TODO 관리**: `AGENTS.md`의 **TODO** 섹션에 추가된 아이디어를 수시로 확인하여 `STORYBOARD.md` 및 작업 계획에 반영하고, 반영이 완료된 항목은 즉시 삭제한다.
 - **상태 기록**: 작업 완료 후 변경 사항과 다음 할 일을 `PROJECT_STATUS.md`에, 테스트 결과는 `TEST_LOG.md`에 기록한다.
 - **의도 파악**: 기술적/디자인적 결정 배경은 `DECISION_LOG.md`를, 화면 흐름은 `STORYBOARD.md`를 참조한다.
 - **우선순위**: AI는 `.ai/` 폴더 내의 모든 파일을 최우선 컨텍스트로 간주한다.
@@ -46,6 +48,11 @@
 - **데이터 모델링**: `HomeUiState` 등 UI 상태 모델 설계 시 데이터 간 정합성과 자동 계산 로직을 우선한다.
 - **UI/UX 명세**: 시각적 디자인, 간격, 컴포넌트 스타일은 **`UI_UX_SPEC.md`**를 절대적으로 준수한다.
 - **유형 속성**: 모든 자산은 `AssetType` enum을 가지며, 이를 통해 명칭과 테마 색상을 결정한다.
+
+
+
+## TODO
+
 
 ---
 *최종 업데이트: 2026-05-11*

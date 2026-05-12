@@ -6,11 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.misun.misunmoneyplan.domain.model.AssetType
-import com.misun.misunmoneyplan.presentation.home.AssetUiModel
-import com.misun.misunmoneyplan.presentation.home.HomeScreen
-import com.misun.misunmoneyplan.presentation.home.HomeUiState
-import com.misun.misunmoneyplan.presentation.home.SampleData
 import androidx.navigation.compose.rememberNavController
 import com.misun.misunmoneyplan.presentation.ui.theme.MisunMoneyPlanTheme
 import dagger.hilt.android.AndroidEntryPoint
