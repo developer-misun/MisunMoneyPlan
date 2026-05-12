@@ -1,4 +1,4 @@
-package com.misun.misunmoneyplan.presentation.home.components
+package com.misun.misunmoneyplan.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,16 +30,17 @@ import java.util.*
 fun AssetList(
     assets: List<AssetUiModel>,
     totalAmount: Long,
-    onAssetClick: (AssetId) -> Unit
+    onAssetClick: (AssetId) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     if (assets.isEmpty()) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(text = "등록된 자산이 없습니다.", color = MaterialTheme.colorScheme.outline)
         }
     } else {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxSize()
+            modifier = modifier.fillMaxSize()
         ) {
             items(assets) { asset ->
                 AssetItem(
