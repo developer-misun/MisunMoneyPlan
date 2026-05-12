@@ -18,14 +18,14 @@
 
 ## 🚧 진행 중인 작업
 - `[T2-1]` HomeViewModel 및 UiState 설계
-    - 현재 `HomeViewModel`은 빈 클래스 상태.
-    - `GetAssetsUseCase`를 연동하여 실제 데이터를 Flow로 관리하도록 구현 예정.
+    - UI 흐름 우선 원칙에 따라 `SampleData`를 활용하여 화면 상태 관리 로직 구현 중.
+    - 실제 DB 연동은 모든 화면 구성 완료 후 진행 예정.
 
 ## 📋 향후 작업 계획 (Next Steps)
-1. **`[T1-1/2]` 데이터 레이어 완성**: Room DB 엔티티 설계 및 `AssetDao` 구현.
-2. **`[T2-1]` HomeViewModel 고도화**: UI 상태 모델(`HomeUiState`)과 실제 데이터 연동.
-3. **`[F1-4]` 자산 추가 기능**: FAB 클릭 시 간단한 입력을 받을 수 있는 BottomSheet 또는 Dialog 구현.
-4. **UI 컴포넌트 정리**: `presentation/components/` 내 중복된 차트 및 카드 컴포넌트 통합.
+1. **`[T2-1]` HomeViewModel 완성**: `SampleData`를 UI 상태로 변환하여 HomeScreen에 전달.
+2. **`[T3-1]` StockDetailScreen UI**: 상세 화면 구성 및 네비게이션 연동.
+3. **`[T3-2]` TypeDetailScreen UI**: 유형별 필터링 화면 구현.
+4. **`[T4-1]` 데이터 레이어 고도화**: 화면 구성 완료 후 마지막 단계에서 Mapper 및 Repository 완성.
 
 ---
 *마지막 업데이트: 2026-05-11*

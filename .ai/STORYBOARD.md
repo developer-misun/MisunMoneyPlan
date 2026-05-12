@@ -42,15 +42,20 @@
 - `[T1-2]` Local DB(Room) 스키마 설계 및 Repository 인터페이스 정의
 - `[T1-3]` Hilt 기반 의존성 주입(DI) 구조 완성 (완료)
 
-### [Phase 2] 메인 대시보드 (HomeScreen) 구현
-- `[T2-1]` HomeViewModel 및 UiState 설계 (진행 중)
+### [Phase 2] 메인 대시보드 (HomeScreen) 흐름 완성
+- `[T2-1]` HomeViewModel 및 UiState 설계 (진행 중 - SampleData 활용)
 - `[T2-2]` 총 자산 카드 및 공통 UI 컴포넌트 고도화
 - `[T2-3]` Treemap 및 Pie Chart 시각화 로직 구현
 - `[T2-4]` 탭 전환 및 리스트 연동
 
-### [Phase 3] 상세 및 관리 기능 (Detail Screens)
-- `[T3-1]` StockDetailScreen UI 및 편집 로직
+### [Phase 3] 상세 및 관리 화면 완성
+- `[T3-1]` StockDetailScreen UI 및 데이터 전달 로직
 - `[T3-2]` TypeDetailScreen UI 및 필터링 로직
-- `[T3-3]` 자산 추가/수정/삭제 UseCase 구현
+- `[T3-3]` 네비게이션 흐름 연결 및 화면 전환 검증
+
+### [Phase 4] 데이터 레이어 아키텍처 완성 (최종 단계)
+- `[T4-1]` AssetMapper 도입 및 Domain/Data 모델 격리
+- `[T4-2]` Repository 실제 DB 연동 (가짜 데이터 제거)
+- `[T4-3]` 전체 비즈니스 로직 검증 및 통합 테스트
 
 ---
