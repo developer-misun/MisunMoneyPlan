@@ -1,6 +1,7 @@
 package com.misun.misunmoneyplan.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.misun.misunmoneyplan.domain.model.AssetType
 import com.misun.misunmoneyplan.presentation.home.AssetUiModel
 import java.text.NumberFormat
 import java.util.Locale
@@ -20,7 +22,8 @@ import java.util.Locale
 @Composable
 fun TypeAssetList(
     assets: List<AssetUiModel>,
-    totalAmount: Long
+    totalAmount: Long,
+    onTypeClick: (AssetType) -> Unit
 ) {
     if (assets.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -35,7 +38,8 @@ fun TypeAssetList(
             items(assets) { asset ->
                 TypeAssetItem(
                     asset = asset,
-                    totalAmount = totalAmount
+                    totalAmount = totalAmount,
+                    onClick = { onTypeClick(asset.type) }
                 )
             }
         }
@@ -43,9 +47,11 @@ fun TypeAssetList(
 }
 
 @Composable
-fun TypeAssetItem(asset: AssetUiModel, totalAmount: Long) {
+fun TypeAssetItem(asset: AssetUiModel, totalAmount: Long, onClick: () -> Unit) {
     ElevatedCard(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
         colors = CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),

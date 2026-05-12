@@ -6,12 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.misun.misunmoneyplan.presentation.home.AssetType
+import com.misun.misunmoneyplan.domain.model.AssetType
 import com.misun.misunmoneyplan.presentation.home.AssetUiModel
 import com.misun.misunmoneyplan.presentation.home.HomeScreen
 import com.misun.misunmoneyplan.presentation.home.HomeUiState
 import com.misun.misunmoneyplan.presentation.home.SampleData
+import androidx.navigation.compose.rememberNavController
 import com.misun.misunmoneyplan.presentation.ui.theme.MisunMoneyPlanTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
@@ -27,20 +29,18 @@ import kotlinx.coroutines.launch
  * 5️⃣ 상태바/네비게이션바 설정
  *
  */
+@AndroidEntryPoint
 class MainActivity : ComponentActivity(){
 
     /**
      * 앱 시작시 최초 1회 실행
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState) //Activity 생명주기 초기화
-        setContent {// UI 루트 설정
-
+        super.onCreate(savedInstanceState)
+        setContent {
             MisunMoneyPlanTheme {
-                HomeScreen(
-                    state = SampleData.dummyState,
-                    onAssetClick = {}
-                )
+                val navController = rememberNavController()
+                AppNavGraph(navController = navController)
             }
         }
 

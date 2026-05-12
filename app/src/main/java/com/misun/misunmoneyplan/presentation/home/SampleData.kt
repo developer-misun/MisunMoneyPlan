@@ -1,5 +1,7 @@
 package com.misun.misunmoneyplan.presentation.home
 
+import com.misun.misunmoneyplan.domain.model.AssetType
+
 object SampleData {
     private val now = System.currentTimeMillis()
 

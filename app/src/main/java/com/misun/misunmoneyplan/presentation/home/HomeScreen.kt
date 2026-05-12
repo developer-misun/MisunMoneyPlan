@@ -11,7 +11,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.misun.misunmoneyplan.presentation.components.*
+import com.misun.misunmoneyplan.domain.model.AssetType
+import com.misun.misunmoneyplan.presentation.components.TotalAssetCard
+import com.misun.misunmoneyplan.presentation.components.TreemapChart
+import com.misun.misunmoneyplan.presentation.components.PieChart
+import com.misun.misunmoneyplan.presentation.components.StockAssetList
+import com.misun.misunmoneyplan.presentation.components.TypeAssetList
 import com.misun.misunmoneyplan.presentation.ui.theme.MisunMoneyPlanTheme
 
 /**
@@ -22,7 +27,8 @@ import com.misun.misunmoneyplan.presentation.ui.theme.MisunMoneyPlanTheme
 @Composable
 fun HomeScreen(
     state: HomeUiState,
-    onAssetClick: (AssetId) -> Unit,
+    onStockClick: (AssetId) -> Unit,
+    onTypeClick: (AssetType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
@@ -144,12 +150,13 @@ fun HomeScreen(
                 StockAssetList(
                     assets = displayAssets.take(10),
                     totalAmount = state.totalAsset,
-                    onAssetClick = onAssetClick
+                    onAssetClick = onStockClick
                 )
             } else {
                 TypeAssetList(
                     assets = displayAssets,
-                    totalAmount = state.totalAsset
+                    totalAmount = state.totalAsset,
+                    onTypeClick = onTypeClick
                 )
             }
         }
@@ -162,7 +169,8 @@ fun HomeScreenPreview() {
     MisunMoneyPlanTheme {
         HomeScreen(
             state = SampleData.dummyState,
-            onAssetClick = {}
+            onStockClick = {},
+            onTypeClick = {}
         )
     }
 }

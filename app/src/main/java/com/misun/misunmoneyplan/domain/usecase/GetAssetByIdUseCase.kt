@@ -5,12 +5,12 @@ import com.misun.misunmoneyplan.domain.repository.AssetRepository
 import javax.inject.Inject
 
 /**
- * 자산 정보를 업데이트하거나 새로 추가하는 유스케이스
+ * 특정 ID를 가진 자산 정보를 가져오는 유스케이스
  */
-class UpdateAssetUseCase @Inject constructor(
+class GetAssetByIdUseCase @Inject constructor(
     private val repository: AssetRepository
 ) {
-    suspend operator fun invoke(asset: Asset) {
-        repository.updateAsset(asset)
+    suspend operator fun invoke(id: String): Asset? {
+        return repository.getAssetById(id)
     }
 }
