@@ -18,6 +18,7 @@
 2. **개발 및 관리**
    - [`TASK_LOG.md`](TASK_LOG.md): 작업 단위별 진행 현황 및 히스토리.
    - [`TEST_LOG.md`](TEST_LOG.md): 테스트 케이스 정의 및 수행 결과.
+   - [`TESTING_GUIDE.md`](TESTING_GUIDE.md): 개발자용 단위 테스트 수행 가이드.
    - [`REQUEST_LOG.md`](REQUEST_LOG.md): 사용자 요청사항 및 반영 이력.
    - [`DECISION_LOG.md`](DECISION_LOG.md): 주요 기술적/설계적 의사결정 기록.
    - [`TECH_STACK.md`](TECH_STACK.md): 도입 기술 스택 설명 및 학습 리소스.

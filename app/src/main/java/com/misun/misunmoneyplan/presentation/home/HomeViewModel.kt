@@ -19,8 +19,12 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     val selectedTabIndex: StateFlow<Int> = _selectedTabIndex.asStateFlow()
 
     // [F1-1] 전체 자산 상태 관리
-    private val _uiState = MutableStateFlow(HomeUiState(assets = SampleData.dummyAssets))
+    private val _uiState = MutableStateFlow(HomeUiState(isLoading = true))
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
+
+    init {
+        loadAssets()
+    }
 
     /**
      * [F1-2] 탭 전환 제어
@@ -33,7 +37,19 @@ class HomeViewModel @Inject constructor() : ViewModel() {
      * [F1-1] 자산 목록 초기 로드 (현재는 SampleData 사용)
      */
     fun loadAssets() {
-        // 추후 UseCase 연동 예정
-        _uiState.value = HomeUiState(assets = SampleData.dummyAssets)
+        _uiState.value = _uiState.value.copy(isLoading = true, errorMessage = null)
+        try {
+            // 추후 UseCase 연동 예정 (현재는 즉시 로드)
+            _uiState.value = _uiState.value.copy(
+                assets = SampleData.dummyAssets,
+                isLoading = false,
+                errorMessage = null
+            )
+        } catch (e: Exception) {
+            _uiState.value = _uiState.value.copy(
+                isLoading = false,
+                errorMessage = "데이터를 불러오지 못했습니다."
+            )
+        }
     }
 }

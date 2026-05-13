@@ -20,9 +20,9 @@ val AssetType.color: Color
     }
 
 data class HomeUiState(
-    val name: String = "test",
     val assets: List<AssetUiModel> = emptyList(),
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val errorMessage: String? = null
 ) {
     val totalAsset: Long = assets.sumOf { it.amount }
 }

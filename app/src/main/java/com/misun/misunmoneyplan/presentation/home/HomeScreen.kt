@@ -36,6 +36,7 @@ fun HomeScreen(
     onAddAssetClick: () -> Unit,
     onStockClick: (AssetId) -> Unit,
     onTypeClick: (AssetType) -> Unit,
+    onRetryClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val tabs = listOf(
@@ -89,100 +90,129 @@ fun HomeScreen(
             }
         }
     ) { paddingValues ->
-        Column(
+        Box(
             modifier = modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // [F1-1] 총 자산 요약 정보 카드
-            TotalAssetCard(state.totalAsset)
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // [F1-2] 메인 탭 네비게이션 (종목별 / 유형별 / 지역별)
-            TabRow(
-                selectedTabIndex = selectedTabIndex,
-                containerColor = Color.Transparent,
-                contentColor = MaterialTheme.colorScheme.primary,
-                divider = {}
-            ) {
-                tabs.forEachIndexed { index, title ->
-                    Tab(
-                        selected = selectedTabIndex == index,
-                        onClick = { onTabSelected(index) },
-                        text = { Text(text = title) }
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-            
-            // ... 차트 및 리스트 영역 (Phase 2-3에서 고도화 예정)
-
-            // 차트 섹션
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .padding(8.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                if (selectedTabIndex == 0) {
-                    TreemapChart(
-                        assets = displayAssets,
-                        totalAmount = state.totalAsset,
-                        modifier = Modifier.fillMaxSize()
-                    )
-                } else {
-                    PieChart(
-                        assets = displayAssets,
-                        totalAmount = state.totalAsset
-                    )
+            if (state.isLoading) {
+                // [TC-T2-2-05] 로딩 인디케이터
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            } else if (state.errorMessage != null) {
+                // [TC-T2-2-06] 에러 뷰 및 재시도
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
                     Text(
-                        text = tabs[selectedTabIndex],
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.secondary
+                        text = state.errorMessage,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.error
                     )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Button(onClick = onRetryClick) {
+                        Text(stringResource(R.string.action_retry))
+                    }
                 }
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // 자산 리스트 섹션 타이틀
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = if (selectedTabIndex == 0) stringResource(R.string.home_list_title_stock) else stringResource(R.string.home_list_title_type),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
-                )
-                val listAssets = if (selectedTabIndex == 0) displayAssets.take(10) else displayAssets
-                Text(
-                    text = stringResource(R.string.home_list_count_format, listAssets.size),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.outline
-                )
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            if (selectedTabIndex == 0) {
-                StockAssetList(
-                    assets = displayAssets.take(10),
-                    totalAmount = state.totalAsset,
-                    onAssetClick = onStockClick
-                )
             } else {
-                TypeAssetList(
-                    assets = displayAssets,
-                    totalAmount = state.totalAsset,
-                    onTypeClick = onTypeClick
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    // [F1-1] 총 자산 요약 정보 카드
+                    TotalAssetCard(state.totalAsset)
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // [F1-2] 메인 탭 네비게이션 (종목별 / 유형별 / 지역별)
+                    TabRow(
+                        selectedTabIndex = selectedTabIndex,
+                        containerColor = Color.Transparent,
+                        contentColor = MaterialTheme.colorScheme.primary,
+                        divider = {}
+                    ) {
+                        tabs.forEachIndexed { index, title ->
+                            Tab(
+                                selected = selectedTabIndex == index,
+                                onClick = { onTabSelected(index) },
+                                text = { Text(text = title) }
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(24.dp))
+                    
+                    // ... 차트 및 리스트 영역 (Phase 2-3에서 고도화 예정)
+
+                    // 차트 섹션
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                            .padding(8.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        if (selectedTabIndex == 0) {
+                            TreemapChart(
+                                assets = displayAssets,
+                                totalAmount = state.totalAsset,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        } else {
+                            PieChart(
+                                assets = displayAssets,
+                                totalAmount = state.totalAsset
+                            )
+                            Text(
+                                text = tabs[selectedTabIndex],
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.secondary
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    // 자산 리스트 섹션 타이틀
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = if (selectedTabIndex == 0) stringResource(R.string.home_list_title_stock) else stringResource(R.string.home_list_title_type),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        val listAssets = if (selectedTabIndex == 0) displayAssets.take(10) else displayAssets
+                        Text(
+                            text = stringResource(R.string.home_list_count_format, listAssets.size),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.outline
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    if (selectedTabIndex == 0) {
+                        StockAssetList(
+                            assets = displayAssets.take(10),
+                            totalAmount = state.totalAsset,
+                            onAssetClick = onStockClick
+                        )
+                    } else {
+                        TypeAssetList(
+                            assets = displayAssets,
+                            totalAmount = state.totalAsset,
+                            onTypeClick = onTypeClick
+                        )
+                    }
+                }
             }
         }
     }
@@ -199,7 +229,8 @@ fun HomeScreenPreview() {
             onPortfolioClick = {},
             onAddAssetClick = {},
             onStockClick = {},
-            onTypeClick = {}
+            onTypeClick = {},
+            onRetryClick = {}
         )
     }
 }

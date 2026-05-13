@@ -46,7 +46,8 @@ fun AppNavGraph(
                 },
                 onTypeClick = { assetType ->
                     navController.navigate(Screen.TypeDetail.createRoute(assetType))
-                }
+                },
+                onRetryClick = viewModel::loadAssets
             )
         }
 
