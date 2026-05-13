@@ -42,6 +42,15 @@
 - **ViewModel 주소**: 각 ViewModel은 자신이 속한 기능 패키지(예: `presentation/home/`) 내부에 위치한다.
 - **모델 변환**: `data` 레이어에서 가져온 데이터는 반드시 `mapper`를 거쳐 `domain` 모델로 변환된 후 `presentation`으로 전달되어야 한다.
 - **의존성 주입**: 모든 객체 생성 및 주입은 **Hilt**를 통해 관리한다.
+- **타입 안전한 네비게이션**: 문자열 리터럴 Route 대신 `Sealed Class` 기반의 네비게이션 구조를 사용하여 런타임 에러를 방지한다.
+- **리소스 최우선**: UI에 표시되는 모든 문자열은 `strings.xml`을 통해 관리하며 하드코딩을 금지한다.
+
+---
+
+## 참고 자료 (References)
+- [Android Developers - Guide to app architecture](https://developer.android.com/topic/architecture)
+- [Android Developers - Type-safety in Navigation Compose](https://developer.android.com/guide/navigation/design/type-safety)
+- [Clean Architecture by Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 ---
 *마지막 업데이트: 2026-05-13*
