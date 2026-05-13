@@ -13,14 +13,22 @@
 프로젝트 문서는 관리 효율성을 위해 `planning/`, `development/`, `management/` 서브 디렉토리로 구조화되어 관리됩니다.
 
 ### 1. 기획 및 설계 (planning/)
-- [**STORYBOARD.md**](planning/STORYBOARD.md): 화면 ID 정의 및 전체 사용자 흐름도.
-- [**screens/**](planning/screens/): 화면 ID별 상세 기능 명세 및 UI/UX 가이드.
 - [**ARCHITECTURE.md**](planning/ARCHITECTURE.md): 아키텍처 원칙 및 상세 패키지 구조.
 - [**UI_UX_SPEC.md**](planning/UI_UX_SPEC.md): 공통 디자인 시스템 및 가이드라인.
 - [**GLOSSARY.md**](planning/GLOSSARY.md): 프로젝트 주요 용어 정의 사전.
+- [**STORYBOARD.md**](planning/STORYBOARD.md): 화면 ID 정의 및 전체 사용자 흐름도.
+- [**screens/**](planning/screens/): 화면 ID별 상세 기능 명세 및 UI/UX 가이드.
 - [**html/**](planning/html/): 화면 ID별 UI 레이아웃 확인용 목업 (screens/와 1:1 매핑).
 
-### 2. 개발 및 관리 (development/ & management/)
+
+### 2. 관리 및 개발 (management/ & development/)
+
+#### 프로젝트 관리 (management/)
+- [**RULES.md**](management/RULES.md): 프로젝트 통합 개발/협업 규칙 가이드.
+- [**ROADMAP.md**](management/ROADMAP.md): 프로젝트 마일스톤 및 향후 계획.
+- [**REQUEST_LOG.md**](management/REQUEST_LOG.md): 사용자 요청사항 및 반영 이력.
+- [**DECISION_LOG.md**](management/DECISION_LOG.md): 주요 기술적/설계적 의사결정 기록.
+
 
 #### 개발 실행 (development/)
 - [**TASK_LOG.md**](development/TASK_LOG.md): 작업 단위별 진행 현황 및 히스토리.
@@ -29,11 +37,10 @@
 - [**BUG_LOG.md**](development/BUG_LOG.md): 결함 발견 및 수정 이력 관리.
 - [**TECH_STACK.md**](development/TECH_STACK.md): 도입 기술 스택 설명 및 학습 리소스.
 
-#### 프로젝트 관리 (management/)
-- [**ROADMAP.md**](management/ROADMAP.md): 프로젝트 마일스톤 및 향후 계획.
-- [**REQUEST_LOG.md**](management/REQUEST_LOG.md): 사용자 요청사항 및 반영 이력.
-- [**DECISION_LOG.md**](management/DECISION_LOG.md): 주요 기술적/설계적 의사결정 기록.
-- [**RULES.md**](management/RULES.md): 프로젝트 통합 개발/협업 규칙 가이드.
+
+### 3. 학습 및 가이드 (study/)
+- [**COMPONENTS_GUIDE.md**](study/COMPONENTS_GUIDE.md): 공통 컴포넌트 사용 및 구현 가이드.
+- [**SETUP_GUIDE.md**](study/SETUP_GUIDE.md): 개발 환경 구축 및 인계 가이드.
 
 ## 핵심 협업 원칙 (Core Principles)
 상세한 규칙은 [**management/RULES.md**](management/RULES.md)를 참조하십시오.

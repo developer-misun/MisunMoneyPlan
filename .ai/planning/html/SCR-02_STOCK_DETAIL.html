@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockDetailScreen Layout Mockup</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        .phone { width: 360px; height: 740px; background: white; border: 8px solid #333; border-radius: 36px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative; }
+        .top-bar { padding: 16px; display: flex; align-items: center; }
+        .back-icon { font-size: 24px; cursor: pointer; margin-right: 16px; }
+        .content { padding: 16px; overflow-y: auto; height: calc(100% - 130px); }
+
+        /* 상단 강조 카드 */
+        .header-card { background: #E57373; color: white; border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(229,115,115,0.4); }
+        .stock-name { font-size: 18px; opacity: 0.9; display: flex; justify-content: space-between; align-items: center; }
+        .badge { background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .stock-amount { font-size: 32px; font-weight: bold; margin-top: 8px; }
+
+        .section-title { font-weight: bold; font-size: 16px; margin: 24px 0 12px 0; color: #1c1b1f; }
+        .chart-placeholder { width: 100%; height: 120px; background: #f9f9f9; border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; }
+
+        .info-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .info-label { color: #666; font-size: 14px; }
+        .info-value { font-weight: 500; font-size: 14px; }
+
+        .memo-box { background: #f5f5f5; border-radius: 8px; padding: 12px; min-height: 60px; font-size: 14px; color: #444; }
+
+        .bottom-bar { position: absolute; bottom: 0; width: 100%; padding: 16px; box-sizing: border-box; background: white; border-top: 1px solid #eee; display: flex; gap: 12px; }
+        .btn { flex: 1; padding: 12px; border-radius: 24px; text-align: center; font-weight: bold; cursor: pointer; }
+        .btn-delete { color: #B3261E; border: 1px solid #B3261E; }
+        .btn-save { background: #6750A4; color: white; }
+    </style>
+</head>
+<body>
+    <div class="phone">
+        <div class="top-bar">
+            <span class="back-icon">←</span>
+            <span style="font-weight: bold;">종목 상세</span>
+        </div>
+        <div class="content">
+            <div class="header-card">
+                <div class="stock-name">
+                    <span>삼성전자</span>
+                    <span class="badge">국내</span>
+                </div>
+                <div class="stock-amount">₩ 5,000,000</div>
+            </div>
+
+            <div class="section-title">자산 추이</div>
+            <div class="chart-placeholder">[ Line Graph Placeholder ]</div>
+
+            <div class="section-title">상세 정보</div>
+            <div class="info-row">
+                <span class="info-label">자산 유형</span>
+                <span class="info-value">주식</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">보유 비중</span>
+                <span class="info-value">32.7%</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">최종 업데이트</span>
+                <span class="info-value">2026-05-12 14:30</span>
+            </div>
+
+            <div class="section-title">메모</div>
+            <div class="memo-box">
+                반도체 업황 개선 기대감으로 추가 매수 고려 중. 장기 보유 목적.
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <div class="btn btn-delete">삭제</div>
+            <div class="btn btn-save">저장</div>
+        </div>
+    </div>
+</body>
+</html>
