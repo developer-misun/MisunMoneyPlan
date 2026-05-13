@@ -2,7 +2,7 @@
 
 이 문서는 MisunMoneyPlan 프로젝트의 아키텍처 원칙과 패키지 간의 계층 구조 및 역할을 정의합니다.
 
-## 🏛️ 아키텍처 개요 (Clean Architecture + MVVM)
+## 아키텍처 개요 (Clean Architecture + MVVM)
 본 프로젝트는 **Clean Architecture** 가이드라인에 따라 계층을 분리하여 유지보수성과 테스트 용이성을 극대화합니다.
 
 ### 계층 구조 및 데이터 흐름
@@ -11,7 +11,7 @@
 
 ---
 
-## 📂 패키지별 상세 역할 (Package Responsibilities)
+## 패키지별 상세 역할 (Package Responsibilities)
 
 ### 1. `:app` (Android Entry Point)
 - **역할**: 앱의 최상위 설정 및 진입점.
@@ -38,7 +38,7 @@
 
 ---
 
-## 📏 주요 개발 규칙 (Architecture Rules)
+## 주요 개발 규칙 (Architecture Rules)
 - **ViewModel 주소**: 각 ViewModel은 자신이 속한 기능 패키지(예: `presentation/home/`) 내부에 위치한다.
 - **모델 변환**: `data` 레이어에서 가져온 데이터는 반드시 `mapper`를 거쳐 `domain` 모델로 변환된 후 `presentation`으로 전달되어야 한다.
 - **의존성 주입**: 모든 객체 생성 및 주입은 **Hilt**를 통해 관리한다.
