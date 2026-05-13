@@ -3,6 +3,7 @@ package com.misun.misunmoneyplan.presentation.home
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.PieChart
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,23 +21,27 @@ import com.misun.misunmoneyplan.presentation.components.TypeAssetList
 import com.misun.misunmoneyplan.presentation.ui.theme.MisunMoneyPlanTheme
 
 /**
- * 자산배분 파이 차트 + 리스트 표시
- * 전체적인 화면 레이아웃과 상태 전환(탭 전환) 로직만 담당
+ * [F1] HomeScreen (메인 대시보드)
+ * 사용자의 실시간 자산 배분 현황을 시각화하고 관리하는 메인 화면
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     state: HomeUiState,
+    selectedTabIndex: Int,
+    onTabSelected: (Int) -> Unit,
+    onPortfolioClick: () -> Unit,
+    onAddAssetClick: () -> Unit,
     onStockClick: (AssetId) -> Unit,
     onTypeClick: (AssetType) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var selectedTabIndex by remember { mutableIntStateOf(0) }
-    val tabs = listOf("종목별", "유형별")
+    val tabs = listOf("종목별", "유형별", "지역별")
 
     val displayAssets = if (selectedTabIndex == 0) {
         state.assets.sortedByDescending { it.amount }
     } else {
+        // [F1-7a], [F1-8b] 탭에 따른 그룹화 로직 (임시)
         state.assets.groupBy { it.type }.map { (type, items) ->
             AssetUiModel(
                 id = type.name,
@@ -53,16 +58,27 @@ fun HomeScreen(
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
+            // [F1-3b] 포트폴리오 관리 이동 버튼이 포함된 TopAppBar
             TopAppBar(
                 title = { Text("자산 관리", fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                )
+                ),
+                actions = {
+                    IconButton(onClick = onPortfolioClick) {
+                        Icon(Icons.Default.PieChart, contentDescription = "포트폴리오 관리")
+                    }
+                }
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* TODO: 자산 추가 기능 */ }) {
+            // [F1-3a] 신규 자산 추가를 위한 FAB
+            FloatingActionButton(
+                onClick = onAddAssetClick,
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
+            ) {
                 Icon(Icons.Default.Add, contentDescription = "자산 추가")
             }
         }
@@ -74,12 +90,12 @@ fun HomeScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // 총 자산 정보
+            // [F1-1] 총 자산 요약 정보 카드
             TotalAssetCard(state.totalAsset)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 탭 메뉴
+            // [F1-2] 메인 탭 네비게이션 (종목별 / 유형별 / 지역별)
             TabRow(
                 selectedTabIndex = selectedTabIndex,
                 containerColor = Color.Transparent,
@@ -89,13 +105,18 @@ fun HomeScreen(
                 tabs.forEachIndexed { index, title ->
                     Tab(
                         selected = selectedTabIndex == index,
-                        onClick = { selectedTabIndex = index },
+                        onClick = { onTabSelected(index) },
                         text = { Text(text = title) }
                     )
                 }
             }
 
             Spacer(modifier = Modifier.height(24.dp))
+            
+            // ... 차트 및 리스트 영역 (Phase 2-3에서 고도화 예정)
+        }
+    }
+}
 
             // 차트 섹션
             Box(
