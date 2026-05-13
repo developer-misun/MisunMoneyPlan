@@ -12,6 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.misun.misunmoneyplan.R
 import com.misun.misunmoneyplan.domain.model.AssetType
 import com.misun.misunmoneyplan.presentation.components.TotalAssetCard
 import com.misun.misunmoneyplan.presentation.components.TreemapChart
@@ -36,7 +38,11 @@ fun HomeScreen(
     onTypeClick: (AssetType) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val tabs = listOf("종목별", "유형별", "지역별")
+    val tabs = listOf(
+        stringResource(R.string.home_tab_stock),
+        stringResource(R.string.home_tab_type),
+        stringResource(R.string.home_tab_location)
+    )
 
     val displayAssets = if (selectedTabIndex == 0) {
         state.assets.sortedByDescending { it.amount }
@@ -60,14 +66,14 @@ fun HomeScreen(
         topBar = {
             // [F1-3b] 포트폴리오 관리 이동 버튼이 포함된 TopAppBar
             TopAppBar(
-                title = { Text("자산 관리", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.home_title), fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
                 actions = {
                     IconButton(onClick = onPortfolioClick) {
-                        Icon(Icons.Default.PieChart, contentDescription = "포트폴리오 관리")
+                        Icon(Icons.Default.PieChart, contentDescription = stringResource(R.string.home_action_portfolio))
                     }
                 }
             )
@@ -79,7 +85,7 @@ fun HomeScreen(
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary
             ) {
-                Icon(Icons.Default.Add, contentDescription = "자산 추가")
+                Icon(Icons.Default.Add, contentDescription = stringResource(R.string.home_action_add_asset))
             }
         }
     ) { paddingValues ->
@@ -151,13 +157,13 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = if (selectedTabIndex == 0) "상위 자산 목록" else "유형 목록",
+                    text = if (selectedTabIndex == 0) stringResource(R.string.home_list_title_stock) else stringResource(R.string.home_list_title_type),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
                 val listAssets = if (selectedTabIndex == 0) displayAssets.take(10) else displayAssets
                 Text(
-                    text = "${listAssets.size}개 항목",
+                    text = stringResource(R.string.home_list_count_format, listAssets.size),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.outline
                 )

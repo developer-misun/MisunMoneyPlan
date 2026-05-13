@@ -2,7 +2,7 @@
 
 이 문서는 MisunMoneyPlan 프로젝트에 도입된 핵심 라이브러리와 플러그인의 역할, 도입 배경 및 학습 포인트를 정리합니다.
 
-## 🛠️ 핵심 라이브러리 (Dependencies)
+## 핵심 라이브러리 (Dependencies)
 
 ### 1. Jetpack Compose
 - **목적**: 선언형 UI 프레임워크로 현대적인 안드로이드 UI 구현.
@@ -30,7 +30,7 @@
 - **학습 포인트**: `StateFlow`와 `SharedFlow`의 차이점, `collectAsStateWithLifecycle()`을 이용한 안전한 데이터 수집.
 - **추천 리소스**: [Kotlin Flows on Android Guide](https://developer.android.com/kotlin/flow)
 
-## 🔌 빌드 플러그인 (Plugins)
+## 빌드 플러그인 (Plugins)
 
 ### 1. KSP (Kotlin Symbol Processing) - v2.3.7
 - **목적**: 주석 처리(Annotation Processing)를 위한 차세대 도구.

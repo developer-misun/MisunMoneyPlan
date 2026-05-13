@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MisunMoneyPlan</string>
+
+    <!-- HomeScreen -->
+    <string name="home_title">자산 관리</string>
+    <string name="home_tab_stock">종목별</string>
+    <string name="home_tab_type">유형별</string>
+    <string name="home_tab_location">지역별</string>
+    <string name="home_action_portfolio">포트폴리오 관리</string>
+    <string name="home_action_add_asset">자산 추가</string>
+    <string name="home_list_title_stock">상위 자산 목록</string>
+    <string name="home_list_title_type">유형 목록</string>
+    <string name="home_list_count_format">%d개 항목</string>
 </resources>

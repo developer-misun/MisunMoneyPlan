@@ -2,7 +2,7 @@
 
 이 문서는 프로젝트의 전체 화면 구조(Screen ID)와 화면 간의 이동 흐름을 정의합니다.
 
-## 🗺️ 화면 ID 정의 (Screen ID Map)
+## 화면 ID 정의 (Screen ID Map)
 
 | ID | 화면명 | 설명 | 상세 명세 |
 |:---|:---|:---|:---|
@@ -11,7 +11,7 @@
 | **SCR-03** | **PortfolioScreen** | 포트폴리오 관리 및 리밸런싱 | [`SCR-03_PORTFOLIO.md`](screens/SCR-03_PORTFOLIO.md) |
 | **SCR-04** | **TypeDetailScreen** | 유형별 필터링 상세 목록 | [`SCR-04_TYPE_DETAIL.md`](screens/SCR-04_TYPE_DETAIL.md) |
 
-## 🔄 네비게이션 흐름 (Navigation Flow)
+## 네비게이션 흐름 (Navigation Flow)
 
 ### 1. 메인 흐름
 - **앱 시작** -> **SCR-01 (Home)**
