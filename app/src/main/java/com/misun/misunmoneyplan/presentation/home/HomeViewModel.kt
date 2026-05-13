@@ -1,7 +1,7 @@
 package com.misun.misunmoneyplan.presentation.home
 
-
 import androidx.lifecycle.ViewModel
+import com.misun.misunmoneyplan.domain.model.SortOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,6 +31,15 @@ class HomeViewModel @Inject constructor() : ViewModel() {
      */
     fun onTabSelected(index: Int) {
         _selectedTabIndex.value = index
+    }
+
+    /**
+     * [F1-9] 정렬 순서 토글 (내림차순 <-> 오름차순)
+     */
+    fun onSortOrderToggle() {
+        val currentOrder = _uiState.value.sortOrder
+        val newOrder = if (currentOrder == SortOrder.DESC) SortOrder.ASC else SortOrder.DESC
+        _uiState.value = _uiState.value.copy(sortOrder = newOrder)
     }
 
     /**

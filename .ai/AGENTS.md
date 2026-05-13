@@ -18,6 +18,7 @@
 - [**ARCHITECTURE.md**](planning/ARCHITECTURE.md): 아키텍처 원칙 및 상세 패키지 구조.
 - [**UI_UX_SPEC.md**](planning/UI_UX_SPEC.md): 공통 디자인 시스템 및 가이드라인.
 - [**GLOSSARY.md**](planning/GLOSSARY.md): 프로젝트 주요 용어 정의 사전.
+- [**html/**](planning/html/): 화면 ID별 UI 레이아웃 확인용 목업 (screens/와 1:1 매핑).
 
 ### 2. 개발 및 관리 (development/ & management/)
 

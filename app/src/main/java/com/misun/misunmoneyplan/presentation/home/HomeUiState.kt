@@ -3,6 +3,7 @@ package com.misun.misunmoneyplan.presentation.home
 import androidx.compose.ui.graphics.Color
 import com.misun.misunmoneyplan.domain.model.AssetType
 import com.misun.misunmoneyplan.domain.model.AssetLocation
+import com.misun.misunmoneyplan.domain.model.SortOrder
 
 // data class (UI 전용 상태)
 typealias AssetId = String
@@ -21,13 +22,12 @@ val AssetType.color: Color
 
 data class HomeUiState(
     val assets: List<AssetUiModel> = emptyList(),
+    val sortOrder: SortOrder = SortOrder.DESC,
     val isLoading: Boolean = false,
     val errorMessage: String? = null
 ) {
     val totalAsset: Long = assets.sumOf { it.amount }
 }
-
-
 
 data class AssetUiModel(
     val id: AssetId,
@@ -38,4 +38,3 @@ data class AssetUiModel(
     val updatedAt: Long,
     val color: Color = type.color
 )
-

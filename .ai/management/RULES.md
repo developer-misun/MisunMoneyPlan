@@ -4,6 +4,8 @@
 
 ## 1. 문서 및 기록 규칙 (Documentation & Logging)
 - **정의 우선 원칙 (Definition-First)**: 모든 변경 사항(파일 추가, 구조 변경, 기능 구현 등)은 반드시 `AGENTS.md`나 관련 기획 문서에 그 의도와 구조를 먼저 정의한 후 실행한다. "선 정의, 후 실행"을 절대 원칙으로 한다.
+- **문서 1:1 매핑 규칙**: 화면 명세(`planning/screens/SCR-XX.md`)와 레이아웃 목업(`planning/html/SCR-XX.html`)은 파일명을 동일하게 유지하며 1:1로 매핑하여 관리한다.
+- **UI 변경 우선 원칙 (Mockup-First)**: UI에 변경 사항이 발생할 경우, 실제 코드 수정 전 반드시 HTML 목업 파일을 통해 사용자에게 시각적 레이아웃을 먼저 제시하고 승인을 받는다.
 - **문서 최우선 (Doc-First)**: 모든 작업 시작 전 관련 명세(`../planning/STORYBOARD.md`, `../planning/screens/`)를 확인하고, 변경 사항은 즉시 반영한다.
 - **이력 관리**: 모든 유의미한 작업은 `../development/TASK_LOG.md`에, 사용자 요청은 `REQUEST_LOG.md`에 즉시 기록한다.
 - **의사결정 기록**: 주요 기술적 선택이나 아키텍처 변경은 `DECISION_LOG.md`에 사유와 함께 기록한다.
