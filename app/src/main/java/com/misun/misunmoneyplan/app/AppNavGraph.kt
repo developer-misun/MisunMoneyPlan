@@ -1,12 +1,16 @@
 package com.misun.misunmoneyplan.app
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.misun.misunmoneyplan.domain.model.AssetType
 import com.misun.misunmoneyplan.presentation.home.HomeScreen
+import com.misun.misunmoneyplan.presentation.home.HomeViewModel
 import com.misun.misunmoneyplan.presentation.home.SampleData
 import com.misun.misunmoneyplan.presentation.asset.StockDetailScreen
 import com.misun.misunmoneyplan.presentation.asset.TypeDetailScreen
@@ -26,8 +30,16 @@ fun AppNavGraph(
     ) {
         // 1. 홈 대시보드
         composable("home") {
+            val viewModel: HomeViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+            val selectedTabIndex by viewModel.selectedTabIndex.collectAsState()
+
             HomeScreen(
-                state = SampleData.dummyState,
+                state = state,
+                selectedTabIndex = selectedTabIndex,
+                onTabSelected = viewModel::onTabSelected,
+                onPortfolioClick = { /* TODO */ },
+                onAddAssetClick = { /* TODO */ },
                 onStockClick = { assetId ->
                     navController.navigate("stockDetail/$assetId")
                 },

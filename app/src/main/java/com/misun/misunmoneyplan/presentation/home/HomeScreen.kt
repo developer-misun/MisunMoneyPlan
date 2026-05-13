@@ -114,9 +114,6 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(24.dp))
             
             // ... 차트 및 리스트 영역 (Phase 2-3에서 고도화 예정)
-        }
-    }
-}
 
             // 차트 섹션
             Box(
@@ -191,6 +188,10 @@ fun HomeScreenPreview() {
     MisunMoneyPlanTheme {
         HomeScreen(
             state = SampleData.dummyState,
+            selectedTabIndex = 0,
+            onTabSelected = {},
+            onPortfolioClick = {},
+            onAddAssetClick = {},
             onStockClick = {},
             onTypeClick = {}
         )

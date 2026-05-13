@@ -12,14 +12,13 @@
 1. **기획 및 설계**
    - [`STORYBOARD.md`](STORYBOARD.md): 화면 ID 정의 및 전체 사용자 흐름도.
    - [**`screens/`**](screens/): 화면 ID별 상세 기능 명세 및 UI/UX 가이드.
-     - [`SCR-01_HOME.md`](screens/SCR-01_HOME.md): 메인 대시보드.
-     - [`SCR-02_STOCK_DETAIL.md`](screens/SCR-02_STOCK_DETAIL.md): 종목 상세 및 편집.
-     - [`SCR-03_PORTFOLIO.md`](screens/SCR-03_PORTFOLIO.md): 포트폴리오 관리.
+   - [`ARCHITECTURE.md`](ARCHITECTURE.md): 아키텍처 원칙 및 상세 패키지 구조.
    - [`UI_UX_SPEC.md`](UI_UX_SPEC.md): 공통 디자인 시스템 및 가이드라인.
 
 2. **개발 및 관리**
    - [`TASK_LOG.md`](TASK_LOG.md): 작업 단위별 진행 현황 및 히스토리.
    - [`TEST_LOG.md`](TEST_LOG.md): 테스트 케이스 정의 및 수행 결과.
+   - [`REQUEST_LOG.md`](REQUEST_LOG.md): 사용자 요청사항 및 반영 이력.
    - [`DECISION_LOG.md`](DECISION_LOG.md): 주요 기술적/설계적 의사결정 기록.
    - [`TECH_STACK.md`](TECH_STACK.md): 도입 기술 스택 설명 및 학습 리소스.
 
@@ -29,11 +28,10 @@
 - **테스트 필수**: 모든 작업 단위는 `TEST_LOG.md`에 정의된 테스트 케이스를 통과해야 한다.
 - **학습 우선**: 새로운 기술 도입 전 `TECH_STACK.md`에 원리를 정리하고 승인을 받는다.
 
-## 🏗️ 패키지 구조 (Architecture)
-- `app`: 진입점 및 전역 설정.
-- `presentation`: UI 레이어 (기능별 패키지 구성: `home`, `asset`, `portfolio`).
-- `domain`: 순수 비즈니스 로직 (모델, 유스케이스, 인터페이스).
-- `data`: 데이터 소스 구현 (DB, 리포지토리 구현체, 매퍼).
+## 🏗️ 시스템 아키텍처 및 패키지
+상세한 아키텍처 설계 및 패키지 역할 정의는 **[`ARCHITECTURE.md`](ARCHITECTURE.md)**를 참조하십시오.
+- **아키텍처**: Clean Architecture + MVVM
+- **핵심 원칙**: Domain 중심의 계층 분리, 기능별 패키징
 
 ---
 *최종 업데이트: 2026-05-13*
