@@ -17,6 +17,7 @@
 - [**screens/**](planning/screens/): 화면 ID별 상세 기능 명세 및 UI/UX 가이드.
 - [**ARCHITECTURE.md**](planning/ARCHITECTURE.md): 아키텍처 원칙 및 상세 패키지 구조.
 - [**UI_UX_SPEC.md**](planning/UI_UX_SPEC.md): 공통 디자인 시스템 및 가이드라인.
+- [**GLOSSARY.md**](planning/GLOSSARY.md): 프로젝트 주요 용어 정의 사전.
 
 ### 2. 개발 및 관리 (development/ & management/)
 
@@ -24,9 +25,11 @@
 - [**TASK_LOG.md**](development/TASK_LOG.md): 작업 단위별 진행 현황 및 히스토리.
 - [**TEST_LOG.md**](development/TEST_LOG.md): 테스트 케이스 정의 및 수행 결과.
 - [**TESTING_GUIDE.md**](development/TESTING_GUIDE.md): 개발자용 단위 테스트 수행 가이드.
+- [**BUG_LOG.md**](development/BUG_LOG.md): 결함 발견 및 수정 이력 관리.
 - [**TECH_STACK.md**](development/TECH_STACK.md): 도입 기술 스택 설명 및 학습 리소스.
 
 #### 프로젝트 관리 (management/)
+- [**ROADMAP.md**](management/ROADMAP.md): 프로젝트 마일스톤 및 향후 계획.
 - [**REQUEST_LOG.md**](management/REQUEST_LOG.md): 사용자 요청사항 및 반영 이력.
 - [**DECISION_LOG.md**](management/DECISION_LOG.md): 주요 기술적/설계적 의사결정 기록.
 - [**RULES.md**](management/RULES.md): 프로젝트 통합 개발/협업 규칙 가이드.
