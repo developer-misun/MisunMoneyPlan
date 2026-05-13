@@ -47,6 +47,7 @@ fun AppNavGraph(
                 onTypeClick = { assetType ->
                     navController.navigate(Screen.TypeDetail.createRoute(assetType))
                 },
+                onSortOrderToggle = viewModel::onSortOrderToggle,
                 onRetryClick = viewModel::loadAssets
             )
         }

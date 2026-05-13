@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.PieChart
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 import com.misun.misunmoneyplan.R
 import com.misun.misunmoneyplan.domain.model.AssetType
+import com.misun.misunmoneyplan.domain.model.SortOrder
 import com.misun.misunmoneyplan.presentation.components.TotalAssetCard
 import com.misun.misunmoneyplan.presentation.components.TreemapChart
 import com.misun.misunmoneyplan.presentation.components.PieChart
@@ -36,6 +39,7 @@ fun HomeScreen(
     onAddAssetClick: () -> Unit,
     onStockClick: (AssetId) -> Unit,
     onTypeClick: (AssetType) -> Unit,
+    onSortOrderToggle: () -> Unit,
     onRetryClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -46,10 +50,14 @@ fun HomeScreen(
     )
 
     val displayAssets = if (selectedTabIndex == 0) {
-        state.assets.sortedByDescending { it.amount }
+        if (state.sortOrder == SortOrder.DESC) {
+            state.assets.sortedByDescending { it.amount }
+        } else {
+            state.assets.sortedBy { it.amount }
+        }
     } else {
         // [F1-7a], [F1-8b] 탭에 따른 그룹화 로직 (임시)
-        state.assets.groupBy { it.type }.map { (type, items) ->
+        val grouped = state.assets.groupBy { it.type }.map { (type, items) ->
             AssetUiModel(
                 id = type.name,
                 name = type.displayName,
@@ -59,7 +67,12 @@ fun HomeScreen(
                 updatedAt = items.maxOfOrNull { it.updatedAt } ?: 0L,
                 color = type.color
             )
-        }.sortedByDescending { it.amount }
+        }
+        if (state.sortOrder == SortOrder.DESC) {
+            grouped.sortedByDescending { it.amount }
+        } else {
+            grouped.sortedBy { it.amount }
+        }
     }
 
     Scaffold(
@@ -189,12 +202,31 @@ fun HomeScreen(
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )
-                        val listAssets = if (selectedTabIndex == 0) displayAssets.take(10) else displayAssets
-                        Text(
-                            text = stringResource(R.string.home_list_count_format, listAssets.size),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.outline
-                        )
+                        
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            val listAssets = if (selectedTabIndex == 0) displayAssets.take(10) else displayAssets
+                            Text(
+                                text = stringResource(R.string.home_list_count_format, listAssets.size),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.outline
+                            )
+                            
+                            Spacer(modifier = Modifier.width(8.dp))
+                            
+                            // [F1-9] 정렬 토글 버튼
+                            FilterChip(
+                                selected = true,
+                                onClick = onSortOrderToggle,
+                                label = { Text(stringResource(R.string.home_sort_amount)) },
+                                trailingIcon = {
+                                    Icon(
+                                        imageVector = if (state.sortOrder == SortOrder.DESC) Icons.Default.ArrowDownward else Icons.Default.ArrowUpward,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                }
+                            )
+                        }
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))
@@ -230,6 +262,7 @@ fun HomeScreenPreview() {
             onAddAssetClick = {},
             onStockClick = {},
             onTypeClick = {},
+            onSortOrderToggle = {},
             onRetryClick = {}
         )
     }
