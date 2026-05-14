@@ -28,7 +28,16 @@
 - [**ROADMAP.md**](management/ROADMAP.md): 프로젝트 마일스톤 및 향후 계획.
 - [**REQUEST_LOG.md**](management/REQUEST_LOG.md): 사용자 요청사항 및 반영 이력.
 - [**DECISION_LOG.md**](management/DECISION_LOG.md): 주요 기술적/설계적 의사결정 기록.
+- [**AGENT_GUIDE.md**](management/AGENT_GUIDE.md): 차기 AI 에이전트를 위한 통합 핸드오버 가이드.
+- [**COMMUNICATION_GUIDE.md**](management/COMMUNICATION_GUIDE.md): 사용자-에이전트 의사소통 가이드.
 
+#### 에이전트별 작업 가이드 (agents/)
+- [**MANAGER.md**](agents/MANAGER.md): 프로젝트 총괄 및 규칙 감시 가이드.
+- [**ARCHITECT.md**](agents/ARCHITECT.md): 시스템 설계 및 명세 구체화 가이드.
+- [**LOGIC.md**](agents/LOGIC.md): 도메인 로직 및 단위 테스트 가이드.
+- [**UI.md**](agents/UI.md): 프레젠테이션 및 시각화 가이드.
+- [**DATA.md**](agents/DATA.md): 데이터 레이어 및 영속성 가이드.
+- [**TRAINER.md**](agents/TRAINER.md): 기술 개념 및 학습 지원 가이드.
 
 #### 개발 실행 (development/)
 - [**TASK_LOG.md**](development/TASK_LOG.md): 작업 단위별 진행 현황 및 히스토리.
@@ -39,6 +48,7 @@
 
 
 ### 3. 학습 및 가이드 (study/)
+- [**INDEX.md**](study/INDEX.md): 학습 자료 통합 목차.
 - [**COMPONENTS_GUIDE.md**](study/COMPONENTS_GUIDE.md): 공통 컴포넌트 사용 및 구현 가이드.
 - [**SETUP_GUIDE.md**](study/SETUP_GUIDE.md): 개발 환경 구축 및 인계 가이드.
 

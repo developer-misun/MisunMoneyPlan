@@ -1,26 +1,24 @@
+# MisunMoneyPlan
 
-## 미선머니플랜
-자산배분 관리 앱 (Kotlin + Compose + Room)
+자산배분을 체계적으로 관리하고 리밸런싱을 돕는 안드로이드 애플리케이션입니다.
 
-## 기능
-- 자산 목록 관리
-- 배분 비율 시각화
+## AI 에이전트 협업 시스템
+이 프로젝트는 AI 에이전트와 인간 개발자가 고도의 규칙 기반으로 협업하도록 설계되었습니다.
 
+### 핵심 문서 (Brain of Project)
+- 모든 프로젝트 관리 및 설계 명세는 [**.ai/AGENTS.md**](.ai/AGENTS.md)를 기점으로 관리됩니다.
+- 새로운 개발자나 AI 에이전트는 작업 시작 전 반드시 [**AGENT_GUIDE.md**](.ai/management/AGENT_GUIDE.md)를 숙지해야 합니다.
 
+## 기술 스택
+- **언어**: Kotlin 2.3.21
+- **UI**: Jetpack Compose (Material 3)
+- **아키텍처**: MVVM + Clean Architecture
+- **DI**: Hilt 2.59.2
+- **DB**: Room 2.8.4
 
-## AGENTS.md (설계 지침서)
-- AI가 코드를 작성할 때 반드시 준수해야 하는 불변의 규칙과 UI/UX 가이드라인을 담고 있습니다. (프로젝트의 헌법 역할)
+## 프로젝트 구조
+- `app/`: 안드로이드 앱 모듈
+- `.ai/`: 프로젝트 설계, 규칙, 교육 및 에이전트 가이드 자료 (가장 중요)
 
-## PROJECT_STATUS.md (작업 현황판)
-- 현재 세션에서 무엇을 수정했는지, 
-- 다음 작업은 무엇인지 등 실시간 진행 상태를 기록합니다. (AI의 단기 기억 역할)
-
-
-
-
-## MVVM이란?
-| 구성요소      | 역할                    | 예시 (미선머니플랜)                         |
-| --------- | --------------------- | ----------------------------------- |
-| Model     | 데이터 + 비즈니스 로직UI와 독립   | AssetEntity (Room DB)자산 CRUD        |
-| View      | 화면 표시 + 사용자 입력상태만 보여줌 | HomeScreen.kt (Compose)파이차트, 리스트    |
-| ViewModel | Model ↔ View 연결상태 관리  | HomeViewModelStateFlow<HomeUiState> |
+---
+*자세한 내용은 .ai/ 폴더 내의 문서들을 참조하십시오.*
