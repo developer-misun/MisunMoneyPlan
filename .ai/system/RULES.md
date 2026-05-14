@@ -4,10 +4,14 @@
 
 ## 1. 문서 및 기록 규칙 (Documentation & Logging)
 - **정의 우선 원칙 (Definition-First)**: 모든 변경 사항(파일 추가, 구조 변경, 기능 구현 등)은 반드시 `AGENTS.md`나 관련 기획 문서에 그 의도와 구조를 먼저 정의한 후 실행한다. "선 정의, 후 실행"을 절대 원칙으로 한다.
+- **백업 및 안전 원칙 (Backup-First)**: 대규모 파일 이동, 폴더 구조 변경, 혹은 일괄 수정 작업 전에는 반드시 해당 시점의 상태를 백업(임시 폴더 생성 등)하고 작업 후 정합성을 완벽히 검증한다.
 - **문서 1:1 매핑 규칙**: 화면 명세(`project/screens/SCR-XX.md`)와 레이아웃 목업(`project/html/SCR-XX.html`)은 파일명을 동일하게 유지하며 1:1로 매핑하여 관리한다.
 - **문서 최우선 (Doc-First)**: 모든 작업 시작 전 관련 명세(`../project/STORYBOARD.md`, `../project/screens/`)를 확인하고, 변경 사항은 즉시 반영한다.
 - **이력 관리**: 모든 유의미한 작업은 `../project/logs/TASK_LOG.md`에, 사용자 요청은 `../project/logs/REQUEST_LOG.md`에 즉시 기록한다.
 - **의사결정 기록**: 주요 기술적 선택이나 아키텍처 변경은 `../project/logs/DECISION_LOG.md`에 사유와 함께 기록한다.
+- **커밋 컨벤션 (Commit Rules)**: 모든 코드 변경에 대한 Git 커밋 메시지는 `타입: [기능ID] 요약` 형식을 준수한다.
+    - 예: `feat: [F1-1] 총 자산 요약 UI 구현`
+    - 타입: feat(기능), fix(버그 수정), docs(문서), style(포맷팅), refactor(리팩토링), test(테스트)
 
 ## 2. 아키텍처 및 코드 규칙 (Architecture & Coding)
 - **계층 분리 (Layered Architecture)**: `Domain` 중심의 의존성 규칙을 준수하며, 계층 간 데이터 전달 시 `mapper`를 필수로 사용한다.

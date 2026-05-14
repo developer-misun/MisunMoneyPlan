@@ -15,6 +15,7 @@
 ### 1. 도반 시스템 (system/) - 공통
 프로젝트와 상관없이 유지되는 도반의 핵심 규칙과 사용자 개인화 가이드입니다.
 - [**RULES.md**](system/RULES.md): 프로젝트 통합 개발/협업 규칙 가이드.
+- [**BOOTSTRAP.md**](system/BOOTSTRAP.md): 새로운 프로젝트 시작 및 시스템 이식 가이드.
 - [**AGENT_GUIDE.md**](system/AGENT_GUIDE.md): 차기 도반(Doban)을 위한 통합 핸드오버 가이드.
 - [**USER_PREFERENCE.md**](system/USER_PREFERENCE.md): 사용자 성향 및 개인화 가이드.
 - [**COMMUNICATION_GUIDE.md**](system/COMMUNICATION_GUIDE.md): 사용자-도반 의사소통 가이드.
