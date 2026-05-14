@@ -4,8 +4,8 @@
 
 ## 개발 요약
 - **Phase 1 (인프라)**: 100% 완료
-- **Phase 2 (Home)**: 30% 진행 중
-- **Phase 3 (상세/포트폴리오)**: 20% 진행 중
+- **Phase 2 (Home)**: 70% 진행 중
+- **Phase 3 (상세/포트폴리오)**: 30% 진행 중
 - **Phase 4 (최종 통합)**: 대기 중
 
 ---
@@ -15,7 +15,7 @@
 ### [Phase 1] 기초 인프라 및 도메인 모델링
 | Task ID | 작업 내용 | 상세 내역 | 완료일 |
 |:---|:---|:---|:---|
-| **[T1-1]** | 도메인 모델 확정 | `Asset`, `AssetType`, `AssetLocation` 정의 | 2026-05-12 |
+| **[T1-1]** | 도메인 모델 확정 | `Asset`, `AssetType`, `AssetLocation`, `SortOrder` 정의 | 2026-05-12 |
 | **[T1-2]** | Room DB 구축 | Entity, DAO, Database 및 TypeConverter 구현 | 2026-05-12 |
 | **[T1-3]** | DI 구조 설정 | Hilt 컴포넌트 및 Repository 바인딩 완료 | 2026-05-12 |
 
@@ -37,8 +37,8 @@
 
 ## 진행 중인 작업 (In Progress Tasks)
 
-### [Phase 2] 메인 대시보드 흐름 완성
-- **[T2-2] HomeScreen 공통 UI**: 탭 전환 및 `TotalAssetCard` 최종 연동 중.
+### [Phase 2] 메인 대시보드 시각화
+- **[T2-6] 커스텀 차트 구현**: `TreemapChart` 및 `PieChart` Canvas 실구현 대기 중.
 
 ---
 
@@ -50,4 +50,4 @@
 4. **[T4-1] 데이터 레이어 최종 고도화**: Mapper 도입 및 실제 DB 연결.
 
 ---
-*마지막 업데이트: 2026-05-13*
+*최종 업데이트: 2026-05-14*

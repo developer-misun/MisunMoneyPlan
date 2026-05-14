@@ -4,11 +4,10 @@
 
 ## 1. 문서 및 기록 규칙 (Documentation & Logging)
 - **정의 우선 원칙 (Definition-First)**: 모든 변경 사항(파일 추가, 구조 변경, 기능 구현 등)은 반드시 `AGENTS.md`나 관련 기획 문서에 그 의도와 구조를 먼저 정의한 후 실행한다. "선 정의, 후 실행"을 절대 원칙으로 한다.
-- **문서 1:1 매핑 규칙**: 화면 명세(`planning/screens/SCR-XX.md`)와 레이아웃 목업(`planning/html/SCR-XX.html`)은 파일명을 동일하게 유지하며 1:1로 매핑하여 관리한다.
-- **UI 변경 우선 원칙 (Mockup-First)**: UI에 변경 사항이 발생할 경우, 실제 코드 수정 전 반드시 HTML 목업 파일을 통해 사용자에게 시각적 레이아웃을 먼저 제시하고 승인을 받는다.
-- **문서 최우선 (Doc-First)**: 모든 작업 시작 전 관련 명세(`../planning/STORYBOARD.md`, `../planning/screens/`)를 확인하고, 변경 사항은 즉시 반영한다.
-- **이력 관리**: 모든 유의미한 작업은 `../development/TASK_LOG.md`에, 사용자 요청은 `REQUEST_LOG.md`에 즉시 기록한다.
-- **의사결정 기록**: 주요 기술적 선택이나 아키텍처 변경은 `DECISION_LOG.md`에 사유와 함께 기록한다.
+- **문서 1:1 매핑 규칙**: 화면 명세(`project/screens/SCR-XX.md`)와 레이아웃 목업(`project/html/SCR-XX.html`)은 파일명을 동일하게 유지하며 1:1로 매핑하여 관리한다.
+- **문서 최우선 (Doc-First)**: 모든 작업 시작 전 관련 명세(`../project/STORYBOARD.md`, `../project/screens/`)를 확인하고, 변경 사항은 즉시 반영한다.
+- **이력 관리**: 모든 유의미한 작업은 `../project/logs/TASK_LOG.md`에, 사용자 요청은 `../project/logs/REQUEST_LOG.md`에 즉시 기록한다.
+- **의사결정 기록**: 주요 기술적 선택이나 아키텍처 변경은 `../project/logs/DECISION_LOG.md`에 사유와 함께 기록한다.
 
 ## 2. 아키텍처 및 코드 규칙 (Architecture & Coding)
 - **계층 분리 (Layered Architecture)**: `Domain` 중심의 의존성 규칙을 준수하며, 계층 간 데이터 전달 시 `mapper`를 필수로 사용한다.
@@ -18,21 +17,22 @@
 
 ## 3. UI/UX 개발 규칙 (UI-First Development)
 - **UI 우선 개발 (UI-First)**: 사용자 경험 검증을 위해 UI와 ViewModel을 먼저 개발하고, DB/API 연동은 후순위(Phase 4 이후)로 진행한다.
+- **UI 변경 우선 원칙 (Mockup-First)**: UI에 변경 사항이 발생할 경우, 실제 코드 수정 전 반드시 HTML 목업 파일을 통해 사용자에게 시각적 레이아웃을 먼저 제시하고 승인을 받는다.
 - **Preview 필수**: 모든 UI 컴포넌트(`Composable`)는 독립적으로 확인 가능한 `@Preview`를 포함해야 한다.
 - **상태 분리**: UI 로직과 비즈니스 로직을 분리하여 `Stateless Composable`을 지향한다.
 
 ## 4. 테스트 및 품질 보증 (TDD & Quality)
-- **TDD 실천 (Test-First)**: 새로운 로직 구현 시 반드시 `../development/TEST_LOG.md`에 케이스를 정의하고, 단위 테스트를 선행하거나 병행한다.
-- **가이드 준수**: 테스트 작성 및 실행 시 `../development/TESTING_GUIDE.md`에 정의된 절차와 컨벤션을 준수한다.
+- **TDD 실천 (Test-First)**: 새로운 로직 구현 시 반드시 `../project/logs/TEST_LOG.md`에 케이스를 정의하고, 단위 테스트를 선행하거나 병행한다.
+- **가이드 준수**: 테스트 작성 및 실행 시 `../study/SETUP_GUIDE.md` 등에 정의된 절차와 컨벤션을 준수한다.
 - **빌드 정합성**: 작업 완료 보고 전 반드시 `gradle build` 또는 `compileDebugKotlin`을 통해 빌드 성공 여부를 확인한다.
 - **안정성 우선**: 리팩토링이나 기능 추가 시 기존 테스트 케이스의 통과 여부를 항상 확인한다.
 
 ## 5. AI 에이전트 전용 규칙 (AI Collaboration)
 - **단계별 보고**: 대규모 작업 시 진행 상황을 단계별로 사용자에게 공유한다.
 - **코드 설명**: 복잡한 로직이나 아키텍처 결정 사항은 주석이나 메시지를 통해 명확히 설명한다.
-- **아키텍처 문서 동기화**: 아키텍처 변경 시 반드시 `../planning/ARCHITECTURE.md`를 업데이트하고 관련 공식 참고 자료(링크 등)를 추가한다.
+- **아키텍처 문서 동기화**: 아키텍처 변경 시 반드시 `../project/ARCHITECTURE.md`를 업데이트하고 관련 공식 참고 자료(링크 등)를 추가한다.
 - **오류 자가 진단**: 오류 발생 시 로그를 분석하여 가능한 해결책을 먼저 제시한다.
 - **텍스트 톤 준수**: 가독성을 저해하는 불필요한 이모티콘 사용을 금지하며, 전문적이고 간결한 텍스트 톤을 유지한다.
 
 ---
-*최종 업데이트: 2026-05-13*
+*최종 업데이트: 2026-05-14*

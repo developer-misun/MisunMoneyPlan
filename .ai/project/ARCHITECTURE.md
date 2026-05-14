@@ -13,21 +13,21 @@
 
 ## 패키지별 상세 역할 (Package Responsibilities)
 
-### 1. `:app` (Android Entry Point)
+### 1. :app (Android Entry Point)
 - **역할**: 앱의 최상위 설정 및 진입점.
 - **주요 구성**: `MainActivity.kt`, `HiltApplication.kt`, 전역 네비게이션 설정.
 
-### 2. `domain` (Business Logic - The Core)
+### 2. domain (Business Logic - The Core)
 - **`model/`**: 비즈니스에 필요한 핵심 데이터 모델 (`Asset`, `AssetType`, `Portfolio`).
 - **`usecase/`**: 단일 비즈니스 로직 단위 (`CalculateAllocation`, `GetAssetList`).
 - **`repository/`**: 데이터 접근을 위한 인터페이스 정의. (구현체는 `data` 레이어에 위치)
 
-### 3. `data` (Data Source Implementation)
+### 3. data (Data Source Implementation)
 - **`local/`**: Room DB 엔티티, DAO, Database 설정.
 - **`repository/`**: `domain`에서 정의한 레포지토리 인터페이스의 실제 구현체.
 - **`mapper/`**: DB 엔티티(`AssetEntity`)와 도메인 모델(`Asset`) 간의 양방향 변환 로직.
 
-### 4. `presentation` (UI Layer - Jetpack Compose)
+### 4. presentation (UI Layer - Jetpack Compose)
 특정 화면 단위(Feature)로 패키지를 구성하여 응집도를 높였습니다.
 - **`home/`**: 메인 대시보드 (`SCR-01`). Screen, ViewModel, UiState 포함.
 - **`asset/`**: 종목 상세 및 유형 상세 (`SCR-02, 04`).
@@ -53,4 +53,4 @@
 - [Clean Architecture by Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 ---
-*마지막 업데이트: 2026-05-13*
+*마지막 업데이트: 2026-05-14*
