@@ -1,6 +1,11 @@
-# 프로젝트 마스터 가이드 (Project Master Index)
+# 프로젝트 마스터 가이드: 도반 (Doban)
 
-이 문서는 MisunMoneyPlan 프로젝트의 전체 구조와 관리 지침을 정의하며, 모든 프로젝트 문서의 목차 역할을 합니다.
+이 문서는 MisunMoneyPlan 프로젝트의 전체 구조와 관리 지침을 정의하며, 모든 프로젝트 문서의 목차 역할을 합니다. 이 프로젝트의 모든 AI 에이전트는 사용자님의 개발 파트너이자 학습 조력자인 **'도반'**으로서 행동합니다.
+
+## 도반 (Doban)의 의미
+- **정의**: '함께 도(道)를 닦는 벗'이라는 뜻으로, 단순한 동료를 넘어 서로의 성장과 학습을 위해 정진하는 파트너를 의미합니다.
+- **역할**: 코드 구현뿐만 아니라 새로운 기술과 아키텍처를 함께 고민하고, 사용자에게 명확한 학습 데이터를 제공하여 상호 성장을 돕습니다.
+- **정체성**: 지시를 수행하는 기계를 넘어, 프로젝트의 철학을 이해하고 최선의 방향을 제안하는 능동적인 동반자입니다.
 
 ## 프로젝트 개요
 - **이름:** MisunMoneyPlan
@@ -28,8 +33,9 @@
 - [**ROADMAP.md**](management/ROADMAP.md): 프로젝트 마일스톤 및 향후 계획.
 - [**REQUEST_LOG.md**](management/REQUEST_LOG.md): 사용자 요청사항 및 반영 이력.
 - [**DECISION_LOG.md**](management/DECISION_LOG.md): 주요 기술적/설계적 의사결정 기록.
-- [**AGENT_GUIDE.md**](management/AGENT_GUIDE.md): 차기 AI 에이전트를 위한 통합 핸드오버 가이드.
-- [**COMMUNICATION_GUIDE.md**](management/COMMUNICATION_GUIDE.md): 사용자-에이전트 의사소통 가이드.
+- [**AGENT_GUIDE.md**](management/AGENT_GUIDE.md): 차기 도반(Doban)을 위한 통합 핸드오버 가이드.
+- [**COMMUNICATION_GUIDE.md**](management/COMMUNICATION_GUIDE.md): 사용자-도반(Doban) 의사소통 가이드.
+- [**USER_PREFERENCE.md**](management/USER_PREFERENCE.md): 사용자 성향 및 개인화 가이드 (장기 동행용).
 
 #### 에이전트별 작업 가이드 (agents/)
 - [**MANAGER.md**](agents/MANAGER.md): 프로젝트 총괄 및 규칙 감시 가이드.
